@@ -1,80 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>AI Universe Hub</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Universe Hub</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="container mx-auto max-w-[1280px]">
-    <div class="space-y-8 mt-10">
-        <h1 class="text-center text-5xl font-bold">AI Universe Hub</h1>
-        <div class="flex justify-center"><button id="sort-btn" class="btn bg-[#EB5757] border-none">Sort By
-                Date</button></div>
-    </div>
-    <main>
-        <section>
-            <div id="spinner" class="flex justify-center mt-10 hidden">
-                <div class="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-[#EB5757]"></div>
+    <body class="container mx-auto max-w-[1280px]">
+        <div class="space-y-8 mt-10">
+            <h1 class="text-center text-5xl font-bold">AI Universe Hub</h1>
+            <div class="flex justify-center">
+                <button id="sort-btn" class="btn bg-[#EB5757] border-none">
+                    Sort By Date
+                </button>
             </div>
-            <div id="cards-container" class="grid grid-cols-12 gap-y-10 md:gap-10 my-8">
-
-            </div>
+        </div>
+        <main>
             <section>
-                <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-                <div class="modal">
-                    <div style="background-color: white" class="modal-box w-11/12 max-w-5xl relative ">
-                        <label for="my-modal-3"
-                            class="btn btn-sm btn-circle bg-[#EB5757] border-0 text-white absolute right-2 top-2 z-10 hover:bg-[#EB5757]">✕</label>
 
-                        <div style="background-color: white" class="flex justify-between p-5 items-center gap-5 w-auto mx-auto">
-                            <div class="card bg-[#FEF7F7] p-4 w-6/12 bg-base-100 shadow-xl">
-                                <h1 id="modal-desc" class="font-bold mx-auto w-[420px] mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eos labore
-                                    facilis ipsam at provident quod. Tempore vitae, accusantium dolor temporibus
-                                    perferendis nihil amet ipsam cupiditate in praesentium doloribus. Eum.
-                                </h1>
-                                <div id="plan-container" class="flex mx-auto gap-2 font-bold mt-5">
-                                    
-                                </div>
-                                <div class="flex mt-5 mx-auto w-[420px]">
-                                    <div id="features-div">
-                                        <h3 class="font-bold mb-2">Features</h3>
-                                        <li class="text-[#585858]">Customizable responses</li>
-                                        <li class="text-[#585858]">Multilingual support</li>
-                                        <li class="text-[#585858]">Seamless integration</li>
-                                        <li class="text-[#585858]">Seamless integration</li>
-                                    </div>
-                                    <div class="pl-6 mb-5">
-                                        <h3 class="font-bold mb-2">Integrations</h3>
-                                        <li class="text-[#585858]">Customizable responses</li>
-                                        <li class="text-[#585858]">Multilingual support</li>
-                                        <li class="text-[#585858]">Seamless integration</li>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card w-6/12 bg-base-100 shadow-xl">
-                                <figure class="px-10 pt-10">
-                                    <img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes"
-                                        class="rounded-xl" />
-                                </figure>
-                                <div class="card-body items-center text-center">
-                                    <h2 class="card-title">Hi, how are you doing today?</h2>
-                                    <p class="text-[#585858]">I'm doing well, thank you for asking. How can I <br> assist you today?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- spinner  -->
+
+                <div id="spinner" class="flex justify-center mt-10 hidden">
+                    <div
+                        class="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-[#EB5757]"
+                    ></div>
                 </div>
-            </section>
-            <div class="flex justify-center"><button id="see-more-btn"
-                    class="hidden mb-10 btn bg-[#EB5757] border-none">See More</button></div>
-        </section>
-    </main>
-    <script src="script.js"></script>
-</body>
 
+                
+            </section>
+        </main>
+        <script src="script.js"></script>
+    </body>
 </html>
