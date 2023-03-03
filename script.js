@@ -22,14 +22,14 @@ const displayData = (allData, dataLimit) => {
         console.log(data.id);
 
         const card = document.createElement("div");
-        card.classList.add("col-span-4", "flex", "justify-center");
+        card.classList.add("col-span-12", "flex", "justify-center", "md:col-span-6", "lg:col-span-4");
         card.innerHTML = `
-        <div class="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
-                    <img class="object-cover object-center w-full h-56" src=${data?.image} alt="">
-                
+        <div class="w-[300px] md:w-full overflow-hidden bg-white rounded-lg shadow-lg">
+
+                    <img class="object-cover object-center w-full h-auto md:h-56" src=${data?.image} alt="">               
                     <div class="px-6 py-4">
                         <div class="min-h-[125px]">
-                            <h1 class="text-xl font-semibold text-gray-800 dark:text-white">Features</h1>
+                            <h1 class="text-xl font-semibold text-gray-800">Features</h1>
                             <p>${data?.features[0] ? 1 : ""} ${data?.features[0] ?? ""}</p>
                             <p>${data?.features[1] ? 2 : ""} ${data?.features[1] ?? ""}</p>
                             <p>${data?.features[2] ? 3 : ""} ${data?.features[2] ?? ""}</p>
@@ -74,14 +74,14 @@ const displayData = (allData, dataLimit) => {
         sorted.map(data => {
 
             const card = document.createElement("div");
-            card.classList.add("col-span-4", "flex", "justify-center");
+            card.classList.add("col-span-12", "flex", "justify-center", "md:col-span-6", "lg:col-span-4");
             card.innerHTML = `
-            <div class="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
-                        <img class="object-cover object-center w-full h-56" src=${data?.image} alt="">
-                    
+            <div class="w-[300px] md:w-full overflow-hidden bg-white rounded-lg shadow-lg">
+    
+                        <img class="object-cover object-center w-full h-auto md:h-56" src=${data?.image} alt="">               
                         <div class="px-6 py-4">
                             <div class="min-h-[125px]">
-                                <h1 class="text-xl font-semibold text-gray-800 dark:text-white">Features</h1>
+                                <h1 class="text-xl font-semibold text-gray-800">Features</h1>
                                 <p>${data?.features[0] ? 1 : ""} ${data?.features[0] ?? ""}</p>
                                 <p>${data?.features[1] ? 2 : ""} ${data?.features[1] ?? ""}</p>
                                 <p>${data?.features[2] ? 3 : ""} ${data?.features[2] ?? ""}</p>
@@ -100,11 +100,12 @@ const displayData = (allData, dataLimit) => {
                                 </p>
                             </div>
                             <div>
-                                <button class="bg-[#FEF7F7] mt-4 flex items-center justify-center rounded-full w-10 h-10 ">
+                                <label for="my-modal-3" class="bg-[#FEF7F7] mt-4 flex items-center justify-center rounded-full w-10 h-10" onclick ="modalDetails('${data?.id
+                }')">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-[#EB5757]">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                                     </svg>                          
-                                </button>
+                                </label>
                             </div>
                         </div>
                         </div>
@@ -132,10 +133,62 @@ seeMoreBtn.addEventListener("click", () => {
     loadData()
 })
 
+const elementById = (id) => {
+    return document.getElementById(id)
+}
+
 const modalDetails = async (id) => {
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
     const res = await fetch(url);
     const data = await res.json();
     const modalData = data.data;
     console.log(modalData);
+
+    elementById("modal-desc").innerText = modalData?.description ?? "No description available";
+    const planContainer = elementById("plan-container")
+    planContainer.textContent = ""
+
+    if (modalData.pricing === null) {
+        const planEl = document.createElement("div")
+        planEl.classList.add("flex", "gap-2")
+        const colors = ["#03A30A", "#F28927", "#EB5757"]
+        planEl.innerHTML = `
+        <div class="text-[${colors[0]}] text-center rounded-xl h-[100px] flex justify-center items-center p-5 w-[130px] bg-white">
+          <div>
+          <p class="font-bold text-md">Free of cost</p>
+          <p class="text-sm">Basic</p>
+          </div> 
+        </div>
+        <div class="text-[${colors[1]}] text-center rounded-xl h-[100px] flex justify-center items-center p-5 w-[130px] bg-white">
+          <div>
+          <p class="font-bold text-md">Free of cost</p>
+          <p class="text-sm">Pro</p>
+          </div> 
+        </div>
+        <div class="text-[${colors[2]}] text-center rounded-xl h-[100px] flex justify-center items-center p-5 w-[130px] bg-white">
+          <div>
+          <p class="font-bold text-md">Free of cost</p>
+          <p class="text-sm">Enterprise</p>
+          </div> 
+        </div>
+        `
+        planContainer.appendChild(planEl)
+    }
+    modalData?.pricing.map((price, index) => {
+        const planEl = document.createElement("div")
+        const colors = ["#03A30A", "#F28927", "#EB5757"]
+        planEl.innerHTML = `
+        <div class="text-[${colors[index]}] text-center rounded-xl h-[100px] flex justify-center items-center p-5 w-[130px] bg-white">
+          <div>
+          <p class="font-bold text-md">${price?.price === "0" ?  "No Cost" : price?.price}</p>
+          <p class="text-sm">${price?.plan}</p>
+          </div> 
+        </div>
+        `
+        planContainer.appendChild(planEl)
+    })
+
+    const featuresDiv = elementById("features-div")
+    modalData.features 
+    
 }
