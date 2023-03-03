@@ -81,14 +81,14 @@ const displayData = (allData, dataLimit) => {
         `;
         cardsContainer.appendChild(card);
     });
-
+    //spinner 
     spinner(false);
     function sortByDate(a, b) {
         return (
             Number(new Date(b.published_in)) - Number(new Date(a.published_in))
         );
     }
-
+    // sort by date
     const sortBtn = document.getElementById("sort-btn");
     sortBtn.addEventListener("click", () => {
         cardsContainer.textContent = "";
@@ -166,12 +166,12 @@ const spinner = (isLoading) => {
 };
 
 loadData(6);
-
+// see more button
 const seeMoreBtn = elementById("see-more-btn");
 seeMoreBtn.addEventListener("click", () => {
     loadData();
 });
-
+// modal
 const modalDetails = async (id) => {
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
     const res = await fetch(url);
@@ -210,7 +210,8 @@ const modalDetails = async (id) => {
         </div>
         `;
         planContainer.appendChild(planEl);
-    }
+    } 
+    // card price 
     modalData?.pricing?.map((price, index) => {
         const planEl = document.createElement("div");
         const colors = ["#03A30A", "#F28927", "#EB5757"];
@@ -228,7 +229,7 @@ const modalDetails = async (id) => {
         `;
         planContainer.appendChild(planEl);
     });
-
+    // modal feature 
     const featuresDiv = elementById("features-div");
     featuresDiv.textContent = "";
     const featureListModal = document.createElement("div");
@@ -250,6 +251,8 @@ const modalDetails = async (id) => {
         }
     `;
     featuresDiv.appendChild(featureListModal);
+
+    // modal integration 
 
     const integrationsDiv = elementById("integrations");
     const integrationsListModal = document.createElement("div");
@@ -315,7 +318,8 @@ const modalDetails = async (id) => {
         }
     `;
     badgeContainer.appendChild(newDiv)
-
+    
+    // modal question answer
     const faqContainer = elementById("faq-container");
     faqContainer.textContent = "";
     const faqEl = document.createElement("div");
